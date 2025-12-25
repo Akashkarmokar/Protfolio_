@@ -1,8 +1,6 @@
 # 🌐 The Cloud Resume Challenge
 
-**Note**: This project is not been maintained anymore.
-
-A fully responsive and modern web app built to showcase my skills, projects, and experiences. Built using React, Tailwind CSS, GraphQLAPI's, MongoDB and deployed via Vercel.
+A fully responsive and modern web app built to showcase my skills, projects, and experiences. Built using React, Tailwind CSS, and deployed via Vercel.
 
 Live Demo 👉 [akbrainbyte.vercel.app](https://akbrainbyte.vercel.app/)
 

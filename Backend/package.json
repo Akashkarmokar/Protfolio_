@@ -1,0 +1,50 @@
+{
+  "name": "projectal",
+  "version": "0.0.1",
+  "description": "Core API ENDPOINT FOR PROJECT 'projectal'",
+  "main": "graphql/handler.js",
+  "type": "module",
+  "scripts": {
+    "test": "APP_STAGE=TDD-LOCAL mocha --exit --recursive tests/**/*.test.js --file tests/utils/setup.js",
+    "test:grep": "APP_STAGE=TDD-LOCAL mocha --exit --recursive --file tests/utils/setup.js --grep",
+    "pack": "rm -rf node_modules/ && rm -rf package-lock.json && npm i --production"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "test_file_write.json"
+    ]
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/preset-env": "^7.25.8",
+    "@babel/register": "^7.25.7",
+    "chai": "^5.1.1",
+    "mocha": "^10.7.3",
+    "nodemon": "^3.1.7",
+    "serverless-offline": "^14.4.0",
+    "supertest": "^7.0.0"
+  },
+  "dependencies": {
+    "@apollo/server": "^4.11.0",
+    "@as-integrations/aws-lambda": "^3.1.0",
+    "@aws-sdk/client-s3": "^3.688.0",
+    "@aws-sdk/s3-request-presigner": "^3.688.0",
+    "@graphql-tools/schema": "^10.0.6",
+    "apollo-server-express": "^3.13.0",
+    "aws-sdk": "^2.1686.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "google-auth-library": "^9.14.1",
+    "googleapis": "^148.0.0",
+    "graphql": "^16.9.0",
+    "graphql-tag": "^2.12.6",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.5.3",
+    "nid": "^2.0.1",
+    "serverless-http": "^3.2.0",
+    "uuid": "^11.0.2",
+    "serverless-offline": "^14.4.0"
+  }
+}

@@ -1,0 +1,4 @@
+To Run Test Case simply run : npm run test
+
+If want to run specific Describe then run like this : npm run test -- --grep "Create A Post"
+Here "Create A Post" is name of one describe.

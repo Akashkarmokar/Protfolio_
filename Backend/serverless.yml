@@ -1,0 +1,74 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: akashopenterminal
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: portfolio
+
+
+plugins:
+  - serverless-offline
+
+
+custom:
+  serverless-offline:
+    tmpDir: .serverless/tmp
+
+build:
+  esbuild:
+    bundle: true  
+    platform: node
+    target: node20
+    minify: true  
+    exclude: 
+      - '@aws-sdk/*'
+      - '!@aws-sdk/client-bedrock-runtime'
+    metafile: true
+    banner:
+      js: 'import { createRequire } from "module"; const require = createRequire(import.meta.url);'
+    # format: cjs
+    # sourcemap: true  # Enable source maps for debugging
+    # external:
+    #   - aws-sdk  # Exclude AWS SDK from bundling, as it's available in Lambda
+    # define:
+    #   'require.resolve': 'undefined'  # Avoid using require.resolve in the code
+    
+
+
+package:
+  individually: true
+  excludeDevDependencies: true
+  patterns:
+    - '!./**'           # Exclude everything first
+    - './serverless/graphql/**'      # Include handler
+    - './serverless/package.json'    # Required for Lambda
+    - './serverless/package-lock.json'
+
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  timeout: 10 # optional, in seconds, default is 6
+  region: ap-south-1
+  deploymentBucket:
+    name: protfolio-deployment-bucket
+  # environment:
+    # db_connection_string: ${env:db_connection_string}
+    # db_connection_string_for_TDD: ${env:db_connection_string_for_TDD}
+    # APP_STAGE: ${env:APP_STAGE}
+    # APP_NAME: ${env:APP_NAME}
+    # GOOGLE_CLIENT_ID: 
+    # GOOGLE_CLIENT_SECRET:
+  
+
+
+
+functions:
+  portfolio_backend:
+    handler: graphql/handler.LambdaFunctionHandler
+    events:
+      - httpApi:
+          path: /
+          method: ANY
+      - httpApi:
+          path: /{proxy+}
+          method: ANY
+ 

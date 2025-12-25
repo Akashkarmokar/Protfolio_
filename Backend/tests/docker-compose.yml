@@ -1,0 +1,12 @@
+services:
+  mongodb_db_TDD:
+    container_name: Protfolio_mongo_db_TDD
+    image: mongo:latest
+    restart: always
+    volumes:
+      - protfolio_mongodb_db_TDD:/data/db
+    ports:
+      - '27018:27017'
+
+volumes:
+  protfolio_mongodb_db_TDD:

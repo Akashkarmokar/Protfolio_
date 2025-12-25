@@ -1,0 +1,64 @@
+services:
+  mongodb_db:
+    container_name: ${APP_NAME}_mongo_db
+    image: mongo:latest
+    restart: always
+    volumes:
+      - protfolio_mongodb_db:/data/db
+    ports:
+      - '27017:27017'
+    logging: 
+      driver: 'none'
+  
+  # mongodb_db_TDD:
+  #   container_name: ${APP_NAME}_mongo_db_TDD
+  #   image: mongo:latest
+  #   restart: always
+  #   volumes:
+  #     - mongodb_db_TDD:/data/db
+  #   ports:
+  #     - '27018:27017'
+  
+#  localstack:
+#    image: localstack/localstack
+#    container_name: localstack_aws_container
+#    ports:
+#      - '4566:4566'         # LocalStack gateway
+#      - '4510-4559:4510-4559'  # Additional services (if needed)
+#    environment:
+#      - SERVICES=s3        # Start only S3 service
+#      - AWS_DEFAULT_REGION=us-east-1
+##      - DEBUG=${DEBUG:-0}
+#      - AWS_ACCESS_KEY_ID=dummy
+#      - AWS_SECRET_ACCESS_KEY=dummy
+#      - HOSTNAME_EXTERNAL = localhost
+#    volumes:
+#      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
+#      - /var/run/docker.sock:/var/run/docker.sock  # Allow LocalStack to use Docker
+#      - ./localstack-init.sh:/docker-entrypoint-initaws.d/localstack-init.sh  # Add script to init directory
+#    command: ["sh", "-c", "/docker-entrypoint-initaws.d/localstack-init.sh"]
+
+
+
+  backend_api:
+    build: .
+    container_name: ${APP_NAME}_backend_container
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/project
+      - /project/node_modules
+    environment:
+      - SERVERLESS_ACCESS_KEY=${SERVERLESS_ACCESS_KEY}
+      - db_connection_string=mongodb://mongodb_db:27017/${APP_NAME}
+      - db_connection_string_for_TDD=mongodb://mongodb_db_TDD:27018/${APP_NAME}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+    command: npx nodemon --legacy-watch --exec "sls offline --host 0.0.0.0"  # Use nodemon for hot reloading
+    depends_on:
+      - mongodb_db
+
+
+volumes:
+  protfolio_mongodb_db:
+  # mongodb_db_TDD:

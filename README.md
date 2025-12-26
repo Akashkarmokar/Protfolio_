@@ -4,6 +4,8 @@
 
 **WHAT IS CLOUD RESUME CHALLENGE** : [Find Here](https://cloudresumechallenge.dev/)
 
+**TECHNICAL REPORT :** [PDF](/Technical_Report_Cloud_Resume_Challenge.pdf)
+
 A fully responsive and modern web app built to showcase my skills, projects, and experiences. Built using React, Tailwind CSS, GraphQLAPI's, MongoDB and deployed via Vercel.
 
 Live Demo 👉 [akbrainbyte.vercel.app](https://akbrainbyte.vercel.app/)

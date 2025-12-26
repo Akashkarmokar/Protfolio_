@@ -1,6 +1,8 @@
 # 🌐 The Cloud Resume Challenge
 
-**Note**: This project is not been maintained anymore.
+**Note**: This project is not been maintained anymore due to aws free tier membership expiration.
+
+**WHAT IS CLOUD RESUME CHALLENGE** : [Find Here](https://cloudresumechallenge.dev/)
 
 A fully responsive and modern web app built to showcase my skills, projects, and experiences. Built using React, Tailwind CSS, GraphQLAPI's, MongoDB and deployed via Vercel.
 

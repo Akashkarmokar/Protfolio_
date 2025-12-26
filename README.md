@@ -14,7 +14,7 @@ Live Demo 👉 [akbrainbyte.vercel.app](https://akbrainbyte.vercel.app/)
 
 ## ✨ Features
 
-- 🧑‍💼 About Me Section
+- 🧑‍💼 [About Me](https://akashkarmokar.github.io/home)
 - 🧠 Skills & Technologies
 - 🧱 Projects with Live Demo & Code Links
 - ✍️ Blog Posts
